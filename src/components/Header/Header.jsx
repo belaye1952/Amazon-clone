@@ -36,16 +36,15 @@ const Header = () => {
                             </select>
 
                             <input type="text" name="" id="" placeholder="Search Product" />
-
-                            {/* Search Icon */}
                             <IoMdSearch size={45} />
                         </div>
 
-                        
+
                         {/* right Side Icons */}
                         <div className={classes.order__container}>
                             <a to="" className={classes.language}>
                                 <img
+                                    width={24}
                                     src="https://upload.wikimedia.org/wikipedia/en/thumb/a/a4/Flag_of_the_United_States.svg/1024px-Flag_of_the_United_States.svg.png"
                                     alt=""
                                 />
@@ -58,10 +57,9 @@ const Header = () => {
 
                             <a to={'/user'}>
                                 <div>
-
+                                    {/* user authentication */}
                                 </div>
                             </a>
-
                             <a to="/orders">
                                 <p>Returns</p>
                                 <span>& Orders</span>
@@ -69,7 +67,7 @@ const Header = () => {
 
                             <a to="/cart" className={classes.cart}>
                                 <BiCartAdd size={38} />
-                                <span>total</span>
+                                <span>cart</span>
                             </a>
                         </div>
                     </div>
