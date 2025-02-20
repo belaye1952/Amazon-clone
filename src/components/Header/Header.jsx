@@ -1,28 +1,35 @@
-// import React from 'react'
-import { IoMdSearch } from "react-icons/io";
-import classes from "./Header.module.css"
-import { BiCartAdd } from "react-icons/bi";
+/* eslint-disable no-unused-vars */
+// eslint-disable-next-line no-unused-vars
+import { useContext, useState } from "react";
+import { FaSearch } from "react-icons/fa";
 import { SlLocationPin } from "react-icons/sl";
+import { BiCartAdd } from "react-icons/bi";
+import classes from "./Header.module.css";
 
-
-const Header = () => {
+function Header() {
     return (
         <>
             <section className={classes.fixed}>
                 <section>
+                    {/* Header  Container*/}
                     <div className={classes.header__container}>
+                        {/* Logo and DeliverContent Container */}
                         <div className={classes.logo__container}>
+                            {/* Logo */}
                             <a to="/">
                                 <img
                                     src="https://pngimg.com/uploads/amazon/small/amazon_PNG11.png"
                                     alt=""
                                 />
                             </a>
+
+                            {/* Delivery Content */}
                             <div className={classes.delivery}>
                                 <span>
+                                    {/* Location Icon */}
                                     <SlLocationPin />
                                 </span>
-                                <div>
+                                <div className={classes.delivery__details}>
                                     <p>Delivered To</p>
                                     <span>Ethiopia</span>
                                 </div>
@@ -36,7 +43,9 @@ const Header = () => {
                             </select>
 
                             <input type="text" name="" id="" placeholder="Search Product" />
-                            <IoMdSearch size={45} />
+
+                            {/* Search Icon */}
+                            <FaSearch size={25} />
                         </div>
 
 
@@ -44,7 +53,6 @@ const Header = () => {
                         <div className={classes.order__container}>
                             <a to="" className={classes.language}>
                                 <img
-                                    width={24}
                                     src="https://upload.wikimedia.org/wikipedia/en/thumb/a/a4/Flag_of_the_United_States.svg/1024px-Flag_of_the_United_States.svg.png"
                                     alt=""
                                 />
@@ -55,11 +63,13 @@ const Header = () => {
                                 </select>
                             </a>
 
-                            <a to={'/user'}>
+                            <a to="/">
                                 <div>
-                                    {/* user authentication */}
+                                    <p>Hello, Sign in</p>
+                                    <span>Account & Lists</span>
                                 </div>
                             </a>
+
                             <a to="/orders">
                                 <p>Returns</p>
                                 <span>& Orders</span>
@@ -67,16 +77,14 @@ const Header = () => {
 
                             <a to="/cart" className={classes.cart}>
                                 <BiCartAdd size={38} />
-                                <span>cart</span>
+                                <span>0</span>
                             </a>
                         </div>
                     </div>
                 </section>
-
-                {/* <LowerHeader /> */}
             </section>
         </>
-    )
+    );
 }
 
-export default Header
+export default Header;
