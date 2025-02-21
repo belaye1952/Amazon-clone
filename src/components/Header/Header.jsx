@@ -1,6 +1,5 @@
 /* eslint-disable no-unused-vars */
 // eslint-disable-next-line no-unused-vars
-import { useContext, useState } from "react";
 import { FaSearch } from "react-icons/fa";
 import { SlLocationPin } from "react-icons/sl";
 import { BiCartAdd } from "react-icons/bi";
@@ -79,6 +78,7 @@ function Header() {
                                 <BiCartAdd size={38} />
                                 <span>0</span>
                             </a>
+                            <span>Cart</span>
                         </div>
                     </div>
                 </section>
