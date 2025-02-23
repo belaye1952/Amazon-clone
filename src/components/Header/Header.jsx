@@ -4,6 +4,7 @@ import { FaSearch } from "react-icons/fa";
 import { SlLocationPin } from "react-icons/sl";
 import { BiCartAdd } from "react-icons/bi";
 import classes from "./Header.module.css";
+import LowerHeader from "./LowerHeader";
 
 function Header() {
     return (
@@ -82,6 +83,7 @@ function Header() {
                         </div>
                     </div>
                 </section>
+                <LowerHeader />
             </section>
         </>
     );

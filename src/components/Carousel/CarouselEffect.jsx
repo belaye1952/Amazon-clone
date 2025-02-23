@@ -6,15 +6,12 @@ import classes from "./carousel.module.css"
 const CarouselEffect = () => {
     return (
         <>
-
-
             <Carousel
                 autoPlay={true}
                 infiniteLoop={true}
                 showThumbs={false}
                 showIndicators={false}
             >
-
                 {img.map((image, index) => (
                     <img key={index} src={image} alt="carousel" />
                 ))}
