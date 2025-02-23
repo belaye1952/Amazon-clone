@@ -1,6 +1,7 @@
 // import React from 'react'
 
 import CarouselEffect from "./components/Carousel/CarouselEffect"
+import Category from "./components/Category/Category"
 import Header from "./components/Header/Header"
 
 const App = () => {
@@ -8,6 +9,7 @@ const App = () => {
     <div>
       <Header />
       <CarouselEffect />
+      <Category />
     </div>
   )
 }
