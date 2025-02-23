@@ -4,7 +4,8 @@ import { Rating } from "@mui/material";
 import CurrencyFormat from "../CurrencyFormat/CurrencyFormat"
 import classes from "./Product.module.css"
 const ProductCard = ({ product }) => {
-    const [image, title, rating, price] = product
+    // Destructure the product object to access its properties
+    const { title, price, image, rating } = product;
 
     return (
         <div className={classes.card__container}>
