@@ -7,6 +7,7 @@ import classes from "./Product.module.css"
 const Product = () => {
     const [products, setProducts] = useState()
 
+
     useEffect(() => {
         axios.get("https://fakestoreapi.com/products")
             .then(res => {
@@ -15,6 +16,7 @@ const Product = () => {
             .catch(err => {
                 console.log(err)
             }, [])
+
         return (
             <section className={classes.products_container}>
                 {
