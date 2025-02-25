@@ -1,8 +1,12 @@
 // import React from 'react'
 
+import Layout from "../../components/Layout/Layout"
+
 const Results = () => {
     return (
-        <div>Results</div>
+        <Layout>
+            <div>Results</div>
+        </Layout>
     )
 }
 

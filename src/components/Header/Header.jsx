@@ -5,6 +5,7 @@ import { SlLocationPin } from "react-icons/sl";
 import { BiCartAdd } from "react-icons/bi";
 import classes from "./Header.module.css";
 import LowerHeader from "./LowerHeader";
+import { Link } from "react-router-dom";
 
 function Header() {
     return (
@@ -16,12 +17,12 @@ function Header() {
                         {/* Logo and DeliverContent Container */}
                         <div className={classes.logo__container}>
                             {/* Logo */}
-                            <a to="/">
+                            <Link to="/">
                                 <img
                                     src="https://pngimg.com/uploads/amazon/small/amazon_PNG11.png"
                                     alt=""
                                 />
-                            </a>
+                            </Link>
 
                             {/* Delivery Content */}
                             <div className={classes.delivery}>
