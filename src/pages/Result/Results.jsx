@@ -6,6 +6,7 @@ import { useParams } from "react-router-dom"
 import axios from "axios"
 import { productUrl } from "../../Api/endPoints"
 import ProductCard from "../../components/Product/ProductCard"
+import classes from "./result.module.css"
 const Results = () => {
     const [result, setResult] = useState([])
     const { categoryName } = useParams()
@@ -13,7 +14,7 @@ const Results = () => {
     useEffect(() => {
         axios.get(`${productUrl}/category/${categoryName}`)
             .then((res) => {
-                console.log(res); //  
+                console.log(res);
                 setResult(res.data)
             }
             ).catch((err) => {
@@ -24,14 +25,16 @@ const Results = () => {
 
     return (
         <Layout>
-            <div>
-                {
-                    result.map((product) => (
-                        <ProductCard key={product._id} data={product}
-                        />
-                    ))
-                }
-            </div>
+            <section>
+                <h1 style={{ padding: "30px" }}>Results</h1>
+                <p style={{ padding: "30px" }}>Category / {categoryName}</p>
+                <hr />
+                <div className={classes.product_container}>
+                    {result.map((product) => (
+                        <ProductCard key={product._id} product={product} />
+                    ))}
+                </div>
+            </section>
         </Layout>
     )
 }
