@@ -2,6 +2,7 @@
 import CategoryCard from './CategoryCard'
 import { categoryInfos } from './categoryFullInfo'
 import classes from './category.module.css'
+// import Layout from '../Layout/Layout'
 
 const Category = () => {
     return (
