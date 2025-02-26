@@ -64,22 +64,22 @@ function Header() {
                                 </select>
                             </a>
 
-                            <a to="/">
+                            <Link to="/auth">
                                 <div>
                                     <p>Hello, Sign in</p>
                                     <span>Account & Lists</span>
                                 </div>
-                            </a>
+                            </Link>
 
-                            <a to="/orders">
+                            <Link to="/order">
                                 <p>Returns</p>
                                 <span>& Orders</span>
-                            </a>
+                            </Link>
 
-                            <a to="/cart" className={classes.cart}>
+                            <Link to="/cart" className={classes.cart}>
                                 <BiCartAdd size={38} />
                                 <span>0</span>
-                            </a>
+                            </Link>
                             <span>Cart</span>
                         </div>
                     </div>
