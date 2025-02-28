@@ -20,7 +20,7 @@ const ProductCard = ({ product, flex, renderDesc }) => {
                 </Link>
                 <div>
                     <h3>{title}</h3>
-                    {renderDesc && <p style={{ maxWidth: "500px" }}>{description}</p>}
+                    {renderDesc && <p style={{ maxWidth: "750px" }}>{description}</p>}
                     <div className={classes.rating}>
                         {/* rating  */}
                         <Rating value={rating?.rate} defaultValue={2.5} precision={0.5} />
