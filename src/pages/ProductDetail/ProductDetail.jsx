@@ -13,6 +13,11 @@ const ProductDetail = () => {
     const [product, setProduct] = useState({})
     const [isLoading, setIsLoading] = useState(false)
     useEffect(() => {
+        setIsLoading(true);
+
+        // const timeout = setTimeout(() => {
+        //     setIsLoading(false)
+        // }, 5000)
         axios.get(`${productUrl}/${productId}`)
             .then((res) => {
                 // console.log(res);
@@ -23,12 +28,17 @@ const ProductDetail = () => {
                 console.log(err);
                 setIsLoading(false)
             })
+        // return () => clearTimeout(timeout)
     }, [productId])
 
     return (
         <Layout>
             {isLoading ? <Loader /> : (
-                <ProductCard product={product} />
+                <ProductCard
+                    product={product}
+                    flex={true}
+                    renderDesc={true}
+                />
             )}
         </Layout>
     )
