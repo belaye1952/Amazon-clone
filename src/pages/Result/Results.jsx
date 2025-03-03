@@ -43,6 +43,7 @@ const Results = () => {
                                     key={index}
                                     renderAdd={true}
                                     product={product}
+
                                 />
                             ))}
                         </div>

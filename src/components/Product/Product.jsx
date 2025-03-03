@@ -25,7 +25,7 @@ const Product = () => {
             {isLoading ? <Loader /> : (
                 <section className={classes.products_container}>
                     {products?.map((eachProduct) => (
-                        <ProductCard key={eachProduct.id} product={eachProduct} />
+                        <ProductCard key={eachProduct.id} product={eachProduct} renderAdd={true} />
                     ))}
                 </section>
             )}
