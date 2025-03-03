@@ -4,12 +4,22 @@ import { Rating } from "@mui/material";
 import CurrencyFormat from "../CurrencyFormat/CurrencyFormat"
 import classes from "./Product.module.css"
 import { Link } from 'react-router-dom'
-import { useState } from "react"
-// import Loader from "../Laoder/Loader"
+import { useContext } from "react"
+import { DataContext } from "../DataProvider/DataProvider";
+import { Type } from "../../Utility/action.type";
 const ProductCard = ({ product, flex, renderDesc }) => {
-    // const [isLoading , setIsLoading] = useState(false)
-    // Destructure the product object to access its properties
     const { title, price, image, rating, id, description } = product;
+
+    const [state, dispatch] = useContext(DataContext)
+
+    const addToCart = () => {
+        dispatch({
+            type: Type.ADD_TO_BASKET,
+            item: {
+                title, price, image, rating, id, description
+            }
+        })
+    }
 
     return (
         <>
@@ -31,7 +41,7 @@ const ProductCard = ({ product, flex, renderDesc }) => {
                         {/* price */}
                         <CurrencyFormat amount={price} />
                     </div>
-                    <button className={classes.button}>
+                    <button className={classes.button} onClick={addToCart}>
                         add to cart
                     </button>
                 </div>

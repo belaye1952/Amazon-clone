@@ -38,9 +38,9 @@ const Results = () => {
                 {
                     isLoading ? <Loader /> : (
                         <div className={classes.product_container}>
-                            {result?.map((product) => (
+                            {result?.map((product, index) => (
                                 <ProductCard
-                                    key={product._id}
+                                    key={index}
                                     renderAdd={true}
                                     product={product}
                                 />
