@@ -16,6 +16,9 @@ export const reducer = (state, action) => {
       // return a new state by spreading the current state and adding a new item to the `basket` array
       return {
         ...state,
+        // add the item to the basket array, by spreading the current state and adding a new item to the end of the array
+        // the syntax [...state.basket, action.item] is called the spread operator, it takes the current array and add a new item to the end of it
+        // for example if the current state is { basket: [item1, item2] } and the action.item is item3, the new state will be { basket: [item1, item2, item3] }
         basket: [...state.basket, action.item],
       };
 
