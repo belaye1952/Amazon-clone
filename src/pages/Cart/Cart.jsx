@@ -8,10 +8,24 @@ import CurrencyFormat from "../../components/CurrencyFormat/CurrencyFormat"
 import { Link } from "react-router-dom"
 import { IoIosArrowUp } from "react-icons/io";
 import { IoIosArrowDown } from "react-icons/io";
+import { Type } from "../../Utility/action.type"
 
 const Cart = () => {
     const [{ basket, user }, dispatch] = useContext(DataContext)
-    const total = basket?.reduce((amount, item) => amount + item.price, 0)
+    const total = basket?.reduce((amount, item) => { return amount + item.amount * item.price }, 0)
+
+    const increment = (item) => {
+        dispatch({
+            type: Type.ADD_TO_BASKET,
+            item
+        })
+    }
+    const decrement = (id) => {
+        dispatch({
+            type: Type.REMOVE_FROM_BASKET,
+            id
+        })
+    }
     return (
         <Layout>
             <section className={classes.container}>
@@ -21,20 +35,20 @@ const Cart = () => {
                     <hr />
 
                     {basket?.length === 0 ? <p>Your cart is empty</p> : (
-                        basket?.map((product, index) => (
+                        basket?.map((item, index) => (
                             <>
                                 <section className={classes.cart_product}>
                                     <ProductCard
                                         key={index}
-                                        product={product}
+                                        product={item}
                                         renderDescription={true}
                                         renderAdd={false}
                                         flex={true}
                                     />
 
                                     <div className={classes.btn_container}>
-                                        <button className={classes.btn} onClick={() => increment(product)}><IoIosArrowUp size={25} /></button>
-                                        <span>{product.amount}</span>
+                                        <button className={classes.btn} onClick={() => increment(item)}><IoIosArrowUp size={25} /></button>
+                                        <span>{item.amount}</span>
                                         <button className={classes.btn} onClick={() => decrement(item.id)}><IoIosArrowDown size={25} /></button>
                                     </div>
                                 </section>

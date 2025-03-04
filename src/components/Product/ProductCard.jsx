@@ -1,4 +1,5 @@
-import React, { useContext } from 'react';
+/* eslint-disable react/prop-types */
+import { useContext } from 'react';
 import { Rating } from "@mui/material";
 import CurrencyFormat from "../CurrencyFormat/CurrencyFormat";
 import classes from "./Product.module.css";

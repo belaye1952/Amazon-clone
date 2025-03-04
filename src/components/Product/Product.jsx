@@ -21,6 +21,7 @@ const Product = () => {
             });
     }, []);
     return (
+        
         <>
             {isLoading ? <Loader /> : (
                 <section className={classes.products_container}>
