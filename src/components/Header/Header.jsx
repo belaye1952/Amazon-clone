@@ -53,7 +53,7 @@ function Header() {
                             <input type="text" name="" id="" placeholder="Search Product" />
 
                             {/* Search Icon */}
-                            <FaSearch size={25} />
+                            <FaSearch size={45} />
                         </div>
 
 
