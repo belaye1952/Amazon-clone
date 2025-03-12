@@ -1,7 +1,8 @@
 import firebase from "firebase/compat/app";
-import "firebase/compat/auth";
-import "firebase/compat/firestore";
-import { getAuth } from "firebase/auth";
+import { getAuth } from "firebase/auth"
+import "firebase/compat/firestore"
+import "firebase/compat/auth"
+
 
 // configuration for the Firebase project
 const firebaseConfig = {
@@ -16,8 +17,9 @@ const firebaseConfig = {
 // Initialize the Firebase app with the configuration
 const app = firebase.initializeApp(firebaseConfig);
 
+// Get the auth instance which is used for authentication
+export const auth = getAuth(app);
+
 // Get the Firestore database instance
 export const db = app.firestore();
 
-// Get the auth instance which is used for authentication
-export const auth = getAuth(app);

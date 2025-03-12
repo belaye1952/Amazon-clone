@@ -12,7 +12,6 @@ export const DataProvider = ({ children, reducer, initialState }) => {
     // Return the context provider with the state and dispatch as its value
     return (
         <DataContext.Provider value={[state, dispatch]}>
-            // Render the children inside the context provider
             {children}
         </DataContext.Provider>
     )

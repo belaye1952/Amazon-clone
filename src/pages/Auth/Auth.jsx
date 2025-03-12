@@ -1,46 +1,86 @@
 // import React from 'react'
 import classes from "./Auth.module.css"
 import { Link } from "react-router-dom"
-import { useState } from "react"
+import { useState, useContext } from "react"
 import { auth } from '../../Utility/firebase'
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth'
-
+import { DataContext } from "../../components/DataProvider/DataProvider"
+import { Type } from '../../Utility/action.type'
+import { PuffLoader } from 'react-spinners'
+import { useNavigate } from 'react-router-dom'
 const Auth = () => {
+    const navigate = useNavigate()
+
+    const [{ user }, dispatch] = useContext(DataContext)
+    console.log(user)
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [error, setError] = useState('')
+    const [loading, setLoading] = useState({
+        signIn: false,
+        signUp: false
+    })
     // console.log(email, password);
 
-    const handleLogin = (e) => {
+    const handleLogin = async (e) => {
         e.preventDefault()
+        console.log(e.target.name);
+
         if (e.target.name === 'signin') {
+            setLoading({
+                ...loading,
+                signIn: true
+            })
             signInWithEmailAndPassword(auth, email, password)
                 .then((userInfo) => {
-                    console.log(userInfo);
-
+                    dispatch({
+                        type: Type.SET_USER,
+                        user: userInfo.user
+                    })
+                    setLoading({
+                        ...loading,
+                        signIn: false
+                    })
+                    navigate('/');
                     // Signed in
                     // const user = userInfo.user;
                     // ...
                 })
                 .catch((error) => {
-                    const errorCode = error.code;
-                    const errorMessage = error.message;
+                    setError(error.message)
+                    setLoading({
+                        ...loading,
+                        signIn: false
+                    })
                 });
         }
         else {
+            setLoading({
+                ...loading,
+                signUp: true
+            })
             createUserWithEmailAndPassword(auth, email, password)
                 .then((userInfo) => {
-                    console.log(userInfo);
-
+                    dispatch({
+                        type: Type.SET_USER,
+                        user: userInfo.user
+                    })
+                    setLoading({
+                        ...loading,
+                        signUp: false
+                    })
+                    navigate('/');
                     // Signed in 
                     // const user = userInfo.user;
                     // ...
                 })
                 .catch((error) => {
-                    const errorCode = error.code;
-                    const errorMessage = error.message;
-                    // ..
+                    setError(error.message)
+                    setLoading({
+                        ...loading,
+                        signUp: false
+                    })
                 });
         }
     }
@@ -49,7 +89,7 @@ const Auth = () => {
     return (
         <>
             <div className={classes.login}>
-                <Link to="/">
+                <Link to={"/"}>
                     <img src="https://i.pinimg.com/736x/fe/54/b9/fe54b93c934495741f58a20cfe6daf6d.jpg   " alt="" />
                 </Link>
                 <div className={classes.login__Container}>
@@ -57,21 +97,24 @@ const Auth = () => {
                     <form action="">
                         <div>
                             <label htmlFor="email">Email</label>
-                            <input type="email" id="email" name="" onChange={(e) => setEmail(e.target.value)} />
+                            <input value={email} type="email" id="email" name="" onChange={(e) => setEmail(e.target.value)} />
                         </div>
                         <div>
                             <label htmlFor="password">Password</label>
-                            <input type="password" id="password" onChange={(e) => setPassword(e.target.value)} />
+                            <input value={password} type="password" id="password" onChange={(e) => setPassword(e.target.value)} />
                         </div>
-                        <button name="signin" className={classes.login_btn} onClick={handleLogin}>Sign In</button>
+                        <button type="submit" name="signin" className={classes.login_btn} onClick={handleLogin}>
+                            {loading.signIn ? (<PuffLoader color="#000" size={20} ></PuffLoader>) : ('Sign In')}</button>
                     </form>
 
-                    {/* agrement and new to amazon  */}
+                    {/* agreement and new to amazon  */}
                     <p>by signing-in you agree to the Amazon Clone Conditions of Use & Sale.
                         Please see our Privacy Notice, our Cookies Notice and our Interest-Based
                         Ads Notice.
                     </p>
-                    <button name="signup" onClick={handleLogin} className={classes.login__register_btn}>Create your Amazon Account</button>
+                    <button name="signup" onClick={handleLogin} className={classes.login__register_btn}>
+                        {loading.signUp ? (<PuffLoader color="#000" size={20} ></PuffLoader>) : ('Create your Amazon Account')}</button>
+                    {error && <small className={classes.error}>{error}</small>}
                 </div>
             </div>
         </>
