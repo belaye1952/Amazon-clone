@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 // import React from 'react'
 import { db } from "../../Utility/firebase"
 import { DataContext } from "../../components/DataProvider/DataProvider"
