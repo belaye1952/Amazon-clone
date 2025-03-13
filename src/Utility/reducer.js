@@ -63,7 +63,12 @@ export const reducer = (state, action) => {
         return {
           ...state,
           user: action.user
-        }
+      }
+    case Type.EMPTY_BASKET:
+      return {
+        ...state,
+        basket: []
+    }
     // Default case to handle any other action types
     default:
       // Return the current state

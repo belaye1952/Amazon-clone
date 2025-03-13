@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 // import React from 'react'
 import { useContext, useEffect } from 'react'
 import { DataContext } from './components/DataProvider/DataProvider'

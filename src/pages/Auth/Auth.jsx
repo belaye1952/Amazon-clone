@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 // import React from 'react'
 import classes from "./Auth.module.css"
 import { Link } from "react-router-dom"
@@ -7,12 +8,12 @@ import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'fire
 import { DataContext } from "../../components/DataProvider/DataProvider"
 import { Type } from '../../Utility/action.type'
 import { PuffLoader } from 'react-spinners'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom'
 const Auth = () => {
     const navigate = useNavigate()
-
+    const navStateData = useLocation()
     const [{ user }, dispatch] = useContext(DataContext)
-    console.log(user)
+    // console.log(user)
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
@@ -21,6 +22,10 @@ const Auth = () => {
         signIn: false,
         signUp: false
     })
+
+
+
+
     // console.log(email, password);
 
     const handleLogin = async (e) => {
@@ -42,7 +47,7 @@ const Auth = () => {
                         ...loading,
                         signIn: false
                     })
-                    navigate('/');
+                    navigate(navStateData?.state?.redirect || '/');
                     // Signed in
                     // const user = userInfo.user;
                     // ...
@@ -70,7 +75,7 @@ const Auth = () => {
                         ...loading,
                         signUp: false
                     })
-                    navigate('/');
+                    navigate(navStateData?.state?.redirect || '/');
                     // Signed in 
                     // const user = userInfo.user;
                     // ...
@@ -81,6 +86,7 @@ const Auth = () => {
                         ...loading,
                         signUp: false
                     })
+
                 });
         }
     }
@@ -94,6 +100,19 @@ const Auth = () => {
                 </Link>
                 <div className={classes.login__Container}>
                     <h1>Sign In</h1>
+                    {
+                        navStateData?.state?.msg && (
+                            <small
+                                style={{
+                                    padding: "5px",
+                                    textAlign: "center",
+                                    color: "red",
+                                    fontWeight: "bold"
+                                }}>
+                                {navStateData?.state?.msg}
+                            </small>
+                        )
+                    }
                     <form action="">
                         <div>
                             <label htmlFor="email">Email</label>

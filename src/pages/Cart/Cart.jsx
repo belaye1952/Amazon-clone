@@ -11,7 +11,7 @@ import { IoIosArrowDown } from "react-icons/io";
 import { Type } from "../../Utility/action.type"
 
 const Cart = () => {
-    const [{ basket, user }, dispatch] = useContext(DataContext)
+    const [{ basket, }, dispatch] = useContext(DataContext)
     const total = basket?.reduce((amount, item) => { return amount + item.amount * item.price }, 0)
 
     const increment = (item) => {
@@ -66,7 +66,7 @@ const Cart = () => {
                             <input type="checkbox" />
                             <small>This order contains a gift</small>
                         </span>
-                        <Link to="/payments">Proceed to checkout</Link>
+                        <Link to="/payment">Proceed to checkout</Link>
                     </div>
                 )}
             </section>
