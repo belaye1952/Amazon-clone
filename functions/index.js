@@ -1,5 +1,6 @@
+/* eslint-disable no-undef */
 const { onRequest } = require("firebase-functions/v2/https");
-const logger = require("firebase-functions/logger");
+// const logger = require("firebase-functions/logger");
 const cors = require("cors");
 const express = require("express");
 const dotenv = require("dotenv");
@@ -14,4 +15,18 @@ app.get("/", (req, res) => {
   res.status(200).json({ message: "Hello World!" });
 });
 
-exports.api = onRequest(app);
+app.post("/payment/create", async (req, res) => {
+  const total = req.query.total;
+  if (total > 0) {
+   const paymentIntent = await stripe.paymentIntents.create({
+      amount: total,
+      currency: "usd",
+    });
+    res.status(201).json({ 
+      clientSecret: paymentIntent.client_secret,
+     }); 
+  } else {
+    res.status(400).json({ message: "Invalid total" });
+  }
+}); 
+exports.api = onRequest(app)
